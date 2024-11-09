@@ -1,0 +1,34 @@
+@page "/list"
+
+<PageTitle> Lista </PageTitle>
+
+<h1>Lista de productos</h1>
+
+<table class="table">
+    <thead>
+        <tr>
+        <th>Name</th>
+        <th>Prize</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var producto in productos)
+        {
+            <tr>
+                <td>@producto.Name</td>
+                <td>@producto.Prize</td>
+
+            </tr>
+        }
+    </tbody>
+</table>
+@code
+{
+    private List<(string Name, int Prize)> productos = new List<(string, int)>
+    {
+        ("Banana", 2200),
+        ("Manzana", 1500),
+        ("Naranja", 1000),
+        ("Palta", 3800)
+    };
+}

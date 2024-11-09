@@ -1,0 +1,31 @@
+@page "/message"
+@rendermode InteractiveServer
+
+<PageTitle>Evento de Mensaje</PageTitle>
+
+<h1>Mensaje actualizado</h1>
+<p>@message</p>
+<br>
+<h2>Evento de Mensaje</h2>
+
+<label for="inputMensaje">Escribe un mensaje:</label>
+<input id="inputMensaje" @onchange="CargarMensaje" />
+
+<button class="btn-primary" @onclick="MostrarMensaje">Actualizar</button>
+
+@code {
+    string message = "";
+    string inputText = "";
+
+    void CargarMensaje(ChangeEventArgs e)
+    {
+        inputText = (string)e.Value;
+    }
+
+    void MostrarMensaje()
+    {
+        message = inputText;
+    }
+}
+
+

@@ -1,0 +1,34 @@
+﻿@page "/tareas"
+@rendermode InteractiveServer
+
+<h1>Tareas</h1>
+<br>
+<h3> Recuento de tareas pendientes: (@lista.Count(todo => !todo.IsDone))</h3>
+<br>
+<ul>
+    @foreach (var item in lista)
+    {
+        <li>
+            <input type="checkbox" @bind="item.IsDone" /> @item.Title
+        </li>
+    }
+</ul>
+
+<input @bind="newTask" />
+<button class ="btn btn-primary" @onclick="AddTask">Agregar tarea</button>
+
+
+@code {
+    private List<TodoTask> lista = new();
+    string newTask = "";
+
+    void AddTask()
+    {
+        if (!string.IsNullOrWhiteSpace(newTask))
+        {
+            lista.Add(new TodoTask { Title = newTask });
+            newTask = string.Empty;
+        }
+    }
+}
+
